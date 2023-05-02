@@ -1,0 +1,37 @@
+
+#Para comenzar hacemos los Import necesarios con los paquetes que utilizaremos en el Ejercicio.
+import pandas as pd 
+from skelearn.tree DecisionTreeClassifier
+from skelearn.model_selection import train_test_split
+
+#Cargamos el conjunto de datos
+df = pd.read_csv("covid.csv")
+
+#Podemos eliminar las filas que contienen valores faltantes
+df.dropna(inplace=true)
+
+#Podemos ver las primeras filas del conjunto de datos con la función head()
+df.head()
+
+#Obtenemos información sobre las columnas y los tipos de datos
+df.info()
+
+#Seleccionamos las columnas de caracteristicas y la columna de etiquetas
+x=df.iloc[:, :-1]
+y=df.iloc[:, -1]
+
+#covertimos variables categóricas en variables numéricas
+x=pd.get_dummies(x)
+
+#Dividir el conjunto de datos en conjuntod de entrenamiento y prueba
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2_size, random_state=42)
+
+
+#Creamos un modelo de árbol de decisión 
+clf=DecisionTreeClassifier()
+clf.fit(x_test, y_train)
+
+#Evaluamos el modelo 
+score=clf.score(x_test, y_train)
+print(¨Acurracy: %.2f%%¨ % (scores*100.0))
+
